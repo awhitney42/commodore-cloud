@@ -1,0 +1,14 @@
+[C64SC]
+SaveResourcesOnExit=1
+Window0Height=633
+Window0Width=719
+Window0Xpos=122
+Window0Ypos=77
+SoundDeviceName="pulse"
+Sound=0
+SoundBufferSize=100
+VICIIVideoCache=0
+SidEngine=1
+SidModel=1
+Acia1Base=56832
+
