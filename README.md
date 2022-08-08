@@ -33,8 +33,8 @@ Although intended for use with the companion articles, you can perform the follo
 
 1. `git clone https://github.com/awhitney42/commodore-cloud
 1. `cd commodore-cloud`
-1. `docker build -t commodorecloud:v1 .`
-1. `docker run -d -p 2222:22 commodorecloud:v1`
+1. `sudo docker build -t commodorecloud:v1 .`
+1. `sudo docker run -d -p 2222:22 commodorecloud:v1`
 1. `ssh -X -p 2222 vice@0.0.0.0` to access VICE within the container
 
 ## Resources
