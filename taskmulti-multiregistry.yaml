@@ -1,0 +1,15 @@
+version: v1.0.0
+steps:
+# Build target images
+- build: -t {{.Run.Registry}}/commodore-cloud{{.Run.ID}} -f Dockerfile .
+- build: -t {{.Values.regDate}}/commodore-cldou{{.Run.Date}} -f Dockerfile .
+# Run image 
+- cmd: -t {{.Run.Registry}}/commodore-cloud:{{.Run.ID}}
+  id: commodorecloud
+  detach: true
+  ports: ["2222:22"]
+- cmd: docker stop commodorecloud
+# Push images
+- push:
+  - {{.Run.Registry}}/commodore-cloud:{{.Run.ID}}
+  - {{.Values.regDate}}/commodore-cloud:{{.Run.Date}}
