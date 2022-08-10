@@ -43,7 +43,7 @@ COPY tcpser.tar.gz tcpser_build.sh /root/
 RUN chmod +x /root/tcpser_build.sh \
     && (sleep 1;/root/tcpser_build.sh 2>&1) 
 
-EXPOSE 80 2222
+EXPOSE 2222 6400
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
