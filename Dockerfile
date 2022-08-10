@@ -1,21 +1,33 @@
 FROM nvidia/cuda:11.4.0-base-ubuntu20.04
 CMD nvidia-smi
-#FROM ubuntu:latest
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-#RUN sed -i -e's/ main/ main contrib non-free/g' /etc/apt/sources.list
-
 RUN apt-get update -y && apt-get upgrade -y && apt-get install -y \
   build-essential \
-  openssh-server sudo mlocate less vim iproute2 \
-  x11-apps mesa-utils libgl1-mesa-glx ubuntu-drivers-common alsa-utils pulseaudio \
+  supervisor openssh-server sudo mlocate less vim iproute2 \
+  x11-apps mesa-utils libgl1-mesa-glx ubuntu-drivers-common \
   vice \
   && rm -rf /var/lib/apt/lists/*
 
 # Create vice user and set password
 RUN useradd -rm -d /home/vice -s /bin/bash -g root -G sudo -u 1000 vice
 RUN echo 'vice:areyoukeepingup' | chpasswd
+
+# Also set the root password
+RUN echo "root:Docker!" | chpasswd
+
+# Copy the sshd_config file to the /etc/ssh/ directory
+COPY sshd_config /etc/ssh/
+
+# Create the supervisord log director
+RUN mkdir -p /var/log/supervisor
+
+# Copy and configure the ssh_setup file
+RUN mkdir -p /tmp
+COPY ssh_setup.sh /tmp
+RUN chmod +x /tmp/ssh_setup.sh \
+    && (sleep 1;/tmp/ssh_setup.sh 2>&1 > /dev/null)
 
 RUN wget http://www.zimmers.net/anonftp/pub/cbm/crossplatform/emulators/VICE/vice-3.6.tar.gz
 RUN tar zxvf vice-3.6.tar.gz
@@ -27,9 +39,14 @@ RUN cp vice-3.6.0/data/DRIVES/d1541II vice-3.6.0/data/DRIVES/d1571cr vice-3.6.0/
 
 COPY vicerc /home/vice/.config/vice/vicerc
 
-RUN mkdir /var/run/sshd
-RUN echo 'X11UseLocalhost no' >> /etc/ssh/sshd_config
+COPY tcpser.tar.gz tcpser_build.sh /root/
+RUN chmod +x /root/tcpser_build.sh \
+    && (sleep 1;/root/tcpser_build.sh 2>&1) 
 
-EXPOSE 22
+EXPOSE 80 2222
 
-CMD ["/usr/sbin/sshd", "-D"]
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+CMD ["/usr/bin/supervisord"]
+#CMD ["/usr/sbin/sshd", "-D"]
+
