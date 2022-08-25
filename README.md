@@ -20,7 +20,7 @@ This project also includes the following YAML files:
 
 ### Companion articles
 
-Here is a blog post with the concept and detailed instructions:
+* Here is a blog post with the concept and detailed instructions:
 
 [Blog Post with Full Instructions](https://adamwhitney.net/commodore-in-the-cloud-part-1/)
 
