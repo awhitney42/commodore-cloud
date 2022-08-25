@@ -20,7 +20,11 @@ This project also includes the following YAML files:
 
 ### Companion articles
 
-This project is intended for use with the following articles on [docs.microsoft.com][docs]:
+Here is a blog post with the concept and detailed instructions:
+
+[Blog Post with Full Instructions](https://adamwhitney.net/commodore-in-the-cloud-part-1/)
+
+This project is also intended for use with the following articles on [docs.microsoft.com][docs]:
 
 * [Build container images in the cloud with Azure Container Registry Tasks][build-quick]
 * [Automate container image builds in the cloud when you commit source code][build-task]
@@ -40,8 +44,6 @@ Although intended for use with the companion articles, you can perform the follo
 
 
 ## Resources
-
-[Blog Post with Full Instructions](https://adamwhitney.net/commodore-in-the-cloud-part-1/)
 
 [Azure Container Registry](https://azure.microsoft.com/services/container-registry/)
 
