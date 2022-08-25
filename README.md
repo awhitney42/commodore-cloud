@@ -36,12 +36,12 @@ Although intended for use with the companion articles, you can perform the follo
 1. `sudo docker build -t commodorecloud:v1 .`
 1. `sudo docker run -d -p 2222:2222 -p 5900:5900 commodorecloud:v1`
 1. `ssh -p 2222 vice@0.0.0.0` to access a shell within container
-1. VNC to 0.0.0.0` to access VICE within the container
+1. Connect using VNC to 0.0.0.0 to access VICE within the container
 
 
 ## Resources
 
-[Full Instructions](https://adamwhitney.net/commodore-in-the-cloud-part-1/)
+[Blog Post with Full Instructions](https://adamwhitney.net/commodore-in-the-cloud-part-1/)
 
 [Azure Container Registry](https://azure.microsoft.com/services/container-registry/)
 
