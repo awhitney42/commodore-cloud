@@ -1,11 +1,10 @@
-FROM nvidia/cuda:11.4.0-base-ubuntu20.04
-CMD nvidia-smi
+FROM ubuntu:20.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update -y && apt-get upgrade -y && apt-get install -y \
   build-essential \
-  supervisor openssh-server sudo mlocate less vim iproute2 \
+  supervisor openssh-server sudo mlocate less vim iproute2 lsof \
   x11-apps mesa-utils libgl1-mesa-glx ubuntu-drivers-common \
   x11vnc xvfb \
   vice \
@@ -36,11 +35,11 @@ RUN mkdir /home/vice/.vnc
 # Setup a VNC password
 RUN x11vnc -storepasswd 10print /home/vice/.vnc/passwd
 
-RUN wget http://www.zimmers.net/anonftp/pub/cbm/crossplatform/emulators/VICE/vice-3.6.tar.gz
-RUN tar zxvf vice-3.6.tar.gz
-RUN cp vice-3.6.0/data/C64/kernal vice-3.6.0/data/C64/chargen vice-3.6.0/data/C64/basic /usr/lib/vice/C64
-RUN cp vice-3.6.0/data/DRIVES/d1541II vice-3.6.0/data/DRIVES/d1571cr vice-3.6.0/data/DRIVES/dos* /usr/lib/vice/DRIVES
+# Install VICE kernal and BASIC ROMs
+COPY vice-3.6.0/data/C64/kernal vice-3.6.0/data/C64/chargen vice-3.6.0/data/C64/basic /usr/lib/vice/C64/
+COPY vice-3.6.0/data/DRIVES/d1541II vice-3.6.0/data/DRIVES/d1571cr vice-3.6.0/data/DRIVES/dos* /usr/lib/vice/DRIVES/
 
+# Pulse Audio - FIXME
 #RUN echo 'load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1;172.17.0.0/24' >> /etc/pulse/system.pa 
 #RUN echo 'load-module module-zeroconf-publish' >> /etc/pulse/system.pa 
 
@@ -58,5 +57,4 @@ COPY vice.sh /home/vice/vice.sh
 COPY x11vnc.sh /home/vice/x11vnc.sh
 
 CMD ["/usr/bin/supervisord"]
-#CMD ["/usr/sbin/sshd", "-D"]
 
