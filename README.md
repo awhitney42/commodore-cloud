@@ -31,7 +31,7 @@ This project is intended for use with the following articles on [docs.microsoft.
 
 Although intended for use with the companion articles, you can perform the following steps to run the sample application. These steps require a local [Docker](http://docker.com) installation.
 
-1. `git clone https://github.com/awhitney42/commodore-cloud
+1. `git clone https://github.com/awhitney42/commodore-cloud`
 1. `cd commodore-cloud`
 1. `sudo docker build -t commodorecloud:v1 .`
 1. `sudo docker run -d -p 2222:2222 -p 5900:5900 commodorecloud:v1`
