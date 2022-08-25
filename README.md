@@ -1,7 +1,7 @@
 
 # ACR Build Commodore Cloud
 
-This Node.js application is for use in demonstrating scenarios for Azure Container Registry Tasks. [ACR Tasks](https://docs.microsoft.com/azure/container-registry/container-registry-tasks-overview) is a suite of features within [Azure Container Registry](https://azure.microsoft.com/services/container-registry/) for performing Docker container builds on [Azure](https://azure.com), as well as automated OS and framework patching for Docker containers.
+This application is for use in demonstrating scenarios for Azure Container Registry Tasks. [ACR Tasks](https://docs.microsoft.com/azure/container-registry/container-registry-tasks-overview) is a suite of features within [Azure Container Registry](https://azure.microsoft.com/services/container-registry/) for performing Docker container builds on [Azure](https://azure.com), as well as automated OS and framework patching for Docker containers.
 
 ## Features
 
@@ -34,10 +34,14 @@ Although intended for use with the companion articles, you can perform the follo
 1. `git clone https://github.com/awhitney42/commodore-cloud
 1. `cd commodore-cloud`
 1. `sudo docker build -t commodorecloud:v1 .`
-1. `sudo docker run -d -p 2222:22 commodorecloud:v1`
-1. `ssh -X -p 2222 vice@0.0.0.0` to access VICE within the container
+1. `sudo docker run -d -p 2222:2222 -p 5900:5900 commodorecloud:v1`
+1. `ssh -p 2222 vice@0.0.0.0` to access a shell within container
+1. VNC to 0.0.0.0` to access VICE within the container
+
 
 ## Resources
+
+[Full Instructions](https://adamwhitney.net/commodore-in-the-cloud-part-1/)
 
 [Azure Container Registry](https://azure.microsoft.com/services/container-registry/)
 
