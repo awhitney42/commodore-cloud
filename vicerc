@@ -10,5 +10,11 @@ SoundBufferSize=100
 VICIIVideoCache=0
 SidEngine=1
 SidModel=1
+RsDevice1="127.0.0.1:25232"
+RsDevice1Baud=300
+RsUserEnable=1
+RsUserBaud=300
+Drive9Type=1541
+Drive10Type=1581
 Acia1Base=56832
 

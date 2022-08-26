@@ -39,6 +39,11 @@ RUN x11vnc -storepasswd 10print /home/vice/.vnc/passwd
 COPY vice-3.6.0/data/C64/kernal vice-3.6.0/data/C64/chargen vice-3.6.0/data/C64/basic /usr/lib/vice/C64/
 COPY vice-3.6.0/data/DRIVES/d1541II vice-3.6.0/data/DRIVES/d1571cr vice-3.6.0/data/DRIVES/dos* /usr/lib/vice/DRIVES/
 
+# Install floppy disks for BBS
+COPY gstbbs.d64 /home/vice/
+COPY gstdata.d64 /home/vice/
+COPY gstfiles.d81 /home/vice/
+
 # Pulse Audio - FIXME
 #RUN echo 'load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1;172.17.0.0/24' >> /etc/pulse/system.pa 
 #RUN echo 'load-module module-zeroconf-publish' >> /etc/pulse/system.pa 
@@ -55,6 +60,7 @@ EXPOSE 2222 5900 6400
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY vice.sh /home/vice/vice.sh
 COPY x11vnc.sh /home/vice/x11vnc.sh
+COPY tcpser.sh /home/vice/tcpser.sh
 
 CMD ["/usr/bin/supervisord"]
 
