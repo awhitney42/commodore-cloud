@@ -38,9 +38,10 @@ Although intended for use with the companion articles, you can perform the follo
 1. `git clone https://github.com/awhitney42/commodore-cloud`
 1. `cd commodore-cloud`
 1. `sudo docker build -t commodorecloud:v1 .`
-1. `sudo docker run -d -p 2222:2222 -p 5900:5900 commodorecloud:v1`
+1. `sudo docker run -d -p 2222:2222 -p 5900:5900 -p 6400:6400 commodorecloud:v1`
 1. `ssh -p 2222 vice@0.0.0.0` to access a shell within container
 1. Connect using VNC to 0.0.0.0 to access VICE within the container
+1. `telnet 0.0.0.0 6400` to access the BBS running on the Commodore in the container
 
 
 ## Resources
